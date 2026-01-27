@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>404 | Page Not Found</title>
+<link rel="icon" type="image/x-icon" href="img/logo.png">
+
+<style>
+*{
+  box-sizing:border-box
+}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#f6f7fb;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#333
+}
+
+.wrapper{
+  display:flex;
+  gap:80px;
+  align-items:center;
+  animation:pageIn .8s ease
+}
+
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:none}
+}
+
+.illustration{
+  position:relative;
+  width:220px;
+  height:220px;
+  animation:float 3s ease-in-out infinite
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+
+.circle{
+  position:absolute;
+  border-radius:50%
+}
+
+.circle.big{
+  width:200px;
+  height:200px;
+  background:#ff4b5c;
+  opacity:.15
+}
+
+.circle.small{
+  width:90px;
+  height:90px;
+  background:#ff4b5c;
+  bottom:-10px;
+  right:-10px
+}
+
+.ghost{
+  position:absolute;
+  top:55px;
+  left:55px;
+  width:110px;
+  height:130px;
+  background:#fff;
+  border-radius:60px 60px 40px 40px;
+  box-shadow:0 15px 30px rgba(0,0,0,.15)
+}
+
+.ghost::before,
+.ghost::after{
+  content:'';
+  position:absolute;
+  background:#333;
+  border-radius:50%
+}
+
+.ghost::before{
+  width:10px;
+  height:10px;
+  top:45px;
+  left:30px
+}
+
+.ghost::after{
+  width:10px;
+  height:10px;
+  top:45px;
+  right:30px
+}
+
+.content h1{
+  font-size:96px;
+  margin:0;
+  color:#ff4b5c;
+  animation:fadeUp .8s ease
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+
+.content h2{
+  margin:5px 0 10px;
+  font-size:28px
+}
+
+.content p{
+  color:#777;
+  max-width:340px;
+  line-height:1.5
+}
+
+.actions{
+  margin-top:30px;
+  display:flex;
+  gap:15px
+}
+
+.btn{
+  padding:12px 28px;
+  border-radius:30px;
+  font-size:14px;
+  cursor:pointer;
+  border:none;
+  transition:.25s;
+  position:relative;
+  overflow:hidden
+}
+
+.btn.primary{
+  text-decoration: none;
+  background:#ff4b5c;
+  color:#fff
+}
+
+.btn.primary:hover{
+  background:#ff3a4d
+}
+
+.btn.outline{
+  background:transparent;
+  border:1px solid #ff4b5c;
+  color:#ff4b5c
+}
+
+.btn.outline:hover{
+  background:#ff4b5c;
+  color:#fff
+}
+
+@media(max-width:900px){
+  .wrapper{
+    flex-direction:column;
+    text-align:center;
+    gap:40px
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="illustration">
+    <div class="circle big"></div>
+    <div class="circle small"></div>
+    <div class="ghost"></div>
+  </div>
+
+  <div class="content">
+    <h1>404</h1>
+    <h2>Oops! Page not found</h2>
+    <p>
+      The page you’re looking for doesn’t exist, was removed,
+      or is temporarily unavailable.
+    </p>
+
+    <div class="actions">
+      <a href="/" class="btn primary">Go Home</a>
+      <button class="btn outline" onclick="history.back()">Go Back</button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

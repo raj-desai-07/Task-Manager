@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Confirm Delete Account</title>
+{% load static %}
+<link rel="icon" type="image/x-icon" href='{% static "img/logo.png" %}'>
+<link rel="stylesheet" href='{% static "css/confirm-delete.css" %}'>
+</head>
+<body>
+
+  {% if not request.session.user %}
+    <script>
+        window.location.replace("/login/");
+    </script>
+  {% endif %}
+
+<div class="delete-layout">
+
+  <div class="illustration">
+    <div class="circle big"></div>
+    <div class="circle small"></div>
+
+    <div class="warning-icon">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+  </div>
+
+  <div class="delete-card">
+    <img src='{% static "img/logo.png" %}' class="logo">
+
+    <h1>Delete Account</h1>
+    <p class="subtitle">
+      This will permanently remove the user account and all related data.
+    </p>
+
+    <div class="user-info">
+      <p><strong>User:</strong> {{request.session.name}}</p>
+      <p><strong>Email:</strong> {{request.session.user}}</p>
+    </div>
+
+    <div class="actions">
+      <a href="/" class="btn cancel" style="text-decoration: none;">Cancel</a>
+      <button class="btn danger" onclick="openConfirm()">Yes, Delete</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONFIRMATION MODAL -->
+<div class="custom-modal" id="confirmModal">
+  <div class="modal-box">
+    <h3>Are you absolutely sure?</h3>
+    <p>
+      Once deleted, this account cannot be recovered.
+    </p>
+
+    <div class="modal-actions">
+      <button class="btn cancel" onclick="closeConfirm()">No, Go Back</button>
+      <form action="delete/" method="POST">
+        {% csrf_token %}
+        <button class="btn danger">Delete Permanently</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+<script>
+function openConfirm(){
+  document.getElementById('confirmModal').classList.add('show')
+}
+
+function closeConfirm(){
+  document.getElementById('confirmModal').classList.remove('show')
+}
+
+function finalDelete(){
+  alert("Account deleted successfully");
+}
+</script>
+
+</body>
+</html>
